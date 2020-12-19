@@ -122,7 +122,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Theme = (Components) => (props) => {
+const Theme = (props) => {
   const classes = useStyles();
 
   const handleDrawerOpen = () => {
@@ -208,7 +208,7 @@ const Theme = (Components) => (props) => {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
-            <Components {...props} />
+            {props.children}
             <Box pt={4}>
               <Copyright />
             </Box>

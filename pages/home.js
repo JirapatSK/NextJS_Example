@@ -1,7 +1,8 @@
 import Theme from "../components/theme";
+import TeacherGuard from "../guards/guard";
 
 const Home = (props) => {
-  return <div>Home Page</div>;
+  return <Theme {...props}>Home Page</Theme>;
 };
 
-export default Theme(Home);
+export default TeacherGuard(Home);
