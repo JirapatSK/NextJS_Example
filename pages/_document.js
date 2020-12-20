@@ -32,6 +32,15 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href={`${process.env.base_path}/vendors/bootstrap.min.css`}
           />
+          <link
+            rel="stylesheet"
+            href={`${process.env.base_path}/vendors/all.css`}
+          />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />

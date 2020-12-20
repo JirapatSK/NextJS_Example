@@ -1,10 +1,16 @@
-import "../styles/globals.css";
+import "../styles/globals.scss";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { useEffect, useState } from "react";
 import ThemeConfig from "../components/themeConfig";
+import useLocalStorage from "../components/localStorage";
+
+const initialState = {
+  sideNav: true,
+};
 
 function MyApp({ Component, pageProps }) {
-  const [sideNav, setSideNav] = useState(true);
+  const [userLogin, setUserLogin] = useLocalStorage("userLogin");
+  const [state, setState] = useState(initialState);
 
   useEffect(() => {
     const jssStyles = document.querySelector("#jss-server-side");
@@ -17,9 +23,13 @@ function MyApp({ Component, pageProps }) {
     <ThemeProvider theme={ThemeConfig}>
       <Component
         {...pageProps}
-        sideNav={sideNav}
-        setSideNav={(e) => {
-          setSideNav(e);
+        {...state}
+        setState={(e) => {
+          setState({ ...state, ...e });
+        }}
+        userLogin={{ ...userLogin }}
+        setUserLogin={(e) => {
+          setUserLogin(e);
         }}
       />
     </ThemeProvider>

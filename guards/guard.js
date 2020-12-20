@@ -1,10 +1,10 @@
 import React from "react";
 
-const TeacherGuard = (Components) => (props) => {
+const Guard = (props) => {
   return (
     <React.Fragment>
       {(() => {
-        if (true) {
+        if (false) {
           return <Components {...props}></Components>;
         } else {
           return <div>Not Found</div>;
@@ -14,4 +14,4 @@ const TeacherGuard = (Components) => (props) => {
   );
 };
 
-export default TeacherGuard;
+export default Guard;

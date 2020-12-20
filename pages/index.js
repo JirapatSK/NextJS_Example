@@ -1,7 +1,8 @@
 import Theme from "../components/theme";
+import React from "react";
 
 const Index = (props) => {
-  return <Theme {...props}>Index Page</Theme>;
+  return <div>Index Page</div>;
 };
 
-export default Index
+export default Theme(Index);

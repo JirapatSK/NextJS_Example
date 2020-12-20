@@ -5,30 +5,21 @@ import Drawer from "@material-ui/core/Drawer";
 import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import React, { useState } from "react";
+import React from "react";
 
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import PeopleIcon from "@material-ui/icons/People";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import LayersIcon from "@material-ui/icons/Layers";
-import AssignmentIcon from "@material-ui/icons/Assignment";
 import Link from "next/link";
 
 function Copyright() {
@@ -49,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
+    backgroundColor: "#318EF0",
   },
   toolbarIcon: {
     display: "flex",
@@ -122,20 +114,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Theme = (props) => {
+const Theme = (Components) => (props) => {
   const classes = useStyles();
 
   const handleDrawerOpen = () => {
-    props.setSideNav(true);
+    props.setState({ sideNav: true });
   };
   const handleDrawerClose = () => {
-    props.setSideNav(false);
+    props.setState({ sideNav: false });
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  const menuList = [
-    { pathname: "/", title: "Index" },
-    { pathname: "/home", title: "Home" },
-  ];
+  const menuList = [{ pathname: "/home", title: "Home" }];
 
   return (
     <React.Fragment>
@@ -208,7 +197,7 @@ const Theme = (props) => {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
-            {props.children}
+            <Components {...props} />
             <Box pt={4}>
               <Copyright />
             </Box>
