@@ -21,6 +21,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import useLocalStorage from "./localStorage";
 
 function Copyright() {
   return (
@@ -114,17 +116,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Theme = (Components) => (props) => {
+const ActiveLink = ({ href, children }) => {
+  const router = useRouter();
+  let className = children.props.className || "";
+
+  if (router.pathname === href) {
+    className = `${className} activeLink`;
+  }
+
+  return <Link href={href}>{React.cloneElement(children, { className })}</Link>;
+};
+
+const Theme = (props) => {
   const classes = useStyles();
 
   const handleDrawerOpen = () => {
-    props.setState({ sideNav: true });
+    props.patchState({ tabSidenav: true });
   };
+
   const handleDrawerClose = () => {
-    props.setState({ sideNav: false });
+    props.patchState({ tabSidenav: false });
   };
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  const menuList = [{ pathname: "/home", title: "Home" }];
+  const menuList = [
+    {
+      pathname: "/home",
+      title: "หน้าหลัก",
+      icon: "fas fa-home",
+    },
+    {
+      pathname: "/design/accordion",
+      title: "Accordion",
+      icon: "fas fa-table",
+    },
+  ];
 
   return (
     <React.Fragment>
@@ -132,7 +158,10 @@ const Theme = (Components) => (props) => {
         <CssBaseline />
         <AppBar
           position="absolute"
-          className={clsx(classes.appBar, props.sideNav && classes.appBarShift)}
+          className={clsx(
+            classes.appBar,
+            props.tabSidenav && classes.appBarShift
+          )}
         >
           <Toolbar className={classes.toolbar}>
             <IconButton
@@ -142,7 +171,7 @@ const Theme = (Components) => (props) => {
               onClick={handleDrawerOpen}
               className={clsx(
                 classes.menuButton,
-                props.sideNav && classes.menuButtonHidden
+                props.tabSidenav && classes.menuButtonHidden
               )}
             >
               <MenuIcon />
@@ -168,10 +197,10 @@ const Theme = (Components) => (props) => {
           classes={{
             paper: clsx(
               classes.drawerPaper,
-              !props.sideNav && classes.drawerPaperClose
+              !props.tabSidenav && classes.drawerPaperClose
             ),
           }}
-          open={props.sideNav}
+          open={props.tabSidenav}
         >
           <div className={classes.toolbarIcon}>
             <IconButton onClick={handleDrawerClose}>
@@ -182,14 +211,13 @@ const Theme = (Components) => (props) => {
           <div>
             {menuList.map((element, index) => {
               return (
-                <Link href={element.pathname} key={index}>
-                  <ListItem button>
-                    <ListItemIcon>
-                      <DashboardIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={element.title} />
-                  </ListItem>
-                </Link>
+                <ActiveLink href={element.pathname} key={index}>
+                  <div className="link-theme">
+                    &nbsp;&nbsp;<i className={element.icon}></i>
+                    &nbsp;&nbsp;
+                    {props.tabSidenav && <span>{element.title}</span>}
+                  </div>
+                </ActiveLink>
               );
             })}
           </div>
@@ -197,13 +225,36 @@ const Theme = (Components) => (props) => {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
-            <Components {...props} />
+            {props.children}
             <Box pt={4}>
               <Copyright />
             </Box>
           </Container>
         </main>
       </div>
+
+      <style jsx>{`
+        .activeLink {
+          color: #318df0;
+          background-color: #f0f0f0;
+        }
+
+        .link-theme {
+          padding: 15px;
+          cursor: pointer;
+
+          i {
+            font-size: 18px;
+          }
+          span {
+            font-size: 16px;
+          }
+        }
+
+        .link-theme:hover {
+          background-color: #dadada !important;
+        }
+      `}</style>
     </React.Fragment>
   );
 };

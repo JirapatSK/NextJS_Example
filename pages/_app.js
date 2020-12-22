@@ -4,13 +4,11 @@ import { useEffect, useState } from "react";
 import ThemeConfig from "../components/themeConfig";
 import useLocalStorage from "../components/localStorage";
 
-const initialState = {
-  sideNav: true,
-};
+const initialState = { tabSidenav: true };
 
 function MyApp({ Component, pageProps }) {
-  const [userLogin, setUserLogin] = useLocalStorage("userLogin");
-  const [state, setState] = useState(initialState);
+  const [userLogin, patchUserLogin] = useLocalStorage("userLogin");
+  const [state, patchState] = useState(initialState);
 
   useEffect(() => {
     const jssStyles = document.querySelector("#jss-server-side");
@@ -24,12 +22,12 @@ function MyApp({ Component, pageProps }) {
       <Component
         {...pageProps}
         {...state}
-        setState={(e) => {
-          setState({ ...state, ...e });
+        patchState={(e) => {
+          patchState({ ...state, ...e });
         }}
         userLogin={{ ...userLogin }}
-        setUserLogin={(e) => {
-          setUserLogin(e);
+        patchUserLogin={(e) => {
+          patchUserLogin(e);
         }}
       />
     </ThemeProvider>

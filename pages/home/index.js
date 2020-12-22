@@ -1,7 +1,7 @@
 import Theme from "../../components/theme";
 
 const Home = (props) => {
-  return <div>Home Page</div>;
+  return <Theme {...props}>Home Page</Theme>;
 };
 
-export default Theme(Home);
+export default Home;

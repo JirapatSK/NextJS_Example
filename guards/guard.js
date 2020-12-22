@@ -1,6 +1,6 @@
 import React from "react";
 
-const Guard = (props) => {
+const Guard = (Components) => (props) => {
   return (
     <React.Fragment>
       {(() => {

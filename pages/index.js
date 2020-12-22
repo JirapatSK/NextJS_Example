@@ -1,8 +1,19 @@
 import Theme from "../components/theme";
 import React from "react";
+import { useRouter } from "next/router";
 
 const Index = (props) => {
-  return <div>Index Page</div>;
+  const router = useRouter();
+
+  React.useEffect(() => {
+    router.replace("/home");
+  }, []);
+
+  return (
+    <div className="spinner-border text-primary" role="status">
+      <span className="sr-only">Loading...</span>
+    </div>
+  );
 };
 
-export default Theme(Index);
+export default Index;

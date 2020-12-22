@@ -2,14 +2,14 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Prompt", sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }
 
 * {
   box-sizing: border-box;
+  font-family: "Prompt", sans-serif !important;
+}
+
+.fa,
+.fas {
+  font-family: "Font Awesome 5 Free" !important;
 }
