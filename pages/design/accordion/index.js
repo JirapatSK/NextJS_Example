@@ -169,14 +169,8 @@ const Accordion = (props) => {
         </section>
 
         <style jsx>{`
-          $color_blue: #447fff;
-          $color_blue__fade: rgba($color_blue, 0.1);
-          $color_white: #f9f9f9;
-          $color_cloud: #eaeaea;
-
           .accordion-design {
             $accordion-design: &;
-            background: $color_white;
 
             &-tabs {
               display: none;
@@ -186,7 +180,7 @@ const Accordion = (props) => {
             }
 
             &-item {
-              border-bottom: 1px solid $color_cloud;
+              border-bottom: 1px solid #e0e0e0;
 
               &:last-child {
                 border: none;
@@ -211,13 +205,9 @@ const Accordion = (props) => {
                   border: 3px solid transparent;
                   border-radius: 2px;
                   transform: rotate(45deg);
-                  border-color: transparent $color_blue $color_blue transparent;
+                  border-color: transparent #318df0 #318df0 transparent;
                   opacity: 1;
                   transition: opacity 0.1s ease;
-                }
-
-                &:hover {
-                  background: $color_blue__fade;
                 }
               }
 
@@ -231,11 +221,10 @@ const Accordion = (props) => {
             }
 
             &-active {
-              background: $color_blue__fade;
-
               .accordion-design-item {
                 &__label {
                   padding-bottom: 0;
+
                   cursor: inherit;
 
                   &:hover {
@@ -275,10 +264,10 @@ const Accordion = (props) => {
           @media (min-width: 900px) {
             .accordion-design-tabs {
               display: flex;
-              background: $color_blue__fade;
+              border-bottom: 1px solid #e0e0e0;
 
               .accordion-design-tab {
-                background: $color_blue__fade;
+                background: #fff;
                 padding: 1rem 2rem;
                 font: inherit;
                 flex: 1;
@@ -286,15 +275,26 @@ const Accordion = (props) => {
                 cursor: pointer;
                 transition: background 0.1s ease;
                 &:hover {
-                  background: rgba($color_white, 0.01);
+                  background: rgba(#fff, 0.01);
                 }
 
                 &:last-child {
                   border-right: 0;
                 }
 
+                &:hover {
+                  background: #dadada;
+                }
+
                 &.accordion-design-active {
-                  background: $color_white;
+                  background: #f0f0f0;
+                  border-bottom: 3px solid #318df0;
+                  font-weight: bolder;
+                  color: #318df0;
+                }
+
+                &.accordion-design-active :focus {
+                  outline: none;
                 }
               }
             }
@@ -303,7 +303,7 @@ const Accordion = (props) => {
               padding: 2.4rem;
               display: none;
               border: none;
-              background: $color_white;
+              // background: $color_white;
               min-height: 260px;
 
               &__label,
@@ -327,7 +327,7 @@ const Accordion = (props) => {
           }
 
           .accordion-design {
-            box-shadow: 0 1em 2em -0.9em rgba(#000, 0.7);
+            // box-shadow: 0 1em 2em -0.9em rgba(#000, 0.7);
             overflow: hidden;
             width: 100%;
           }

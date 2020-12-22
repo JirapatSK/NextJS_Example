@@ -2,37 +2,18 @@ import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
-import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
-import Container from "@material-ui/core/Container";
-
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import React from "react";
-
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import DashboardIcon from "@material-ui/icons/Dashboard";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import useLocalStorage from "./localStorage";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 
@@ -138,7 +119,7 @@ const Theme = (props) => {
     props.patchState({ tabSidenav: false });
   };
 
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const menuList = [
     {
       pathname: "/home",
@@ -148,6 +129,11 @@ const Theme = (props) => {
     {
       pathname: "/design/accordion",
       title: "Accordion",
+      icon: "fas fa-border-all",
+    },
+    {
+      pathname: "/design/table",
+      title: "Table",
       icon: "fas fa-table",
     },
   ];
@@ -212,10 +198,15 @@ const Theme = (props) => {
             {menuList.map((element, index) => {
               return (
                 <ActiveLink href={element.pathname} key={index}>
-                  <div className="link-theme">
-                    &nbsp;&nbsp;<i className={element.icon}></i>
-                    &nbsp;&nbsp;
-                    {props.tabSidenav && <span>{element.title}</span>}
+                  <div
+                    className={
+                      props.tabSidenav ? "link-theme" : "link-theme text-center"
+                    }
+                  >
+                    <i className={element.icon}></i>
+                    {props.tabSidenav && (
+                      <span className="ml-3">{element.title}</span>
+                    )}
                   </div>
                 </ActiveLink>
               );
@@ -224,12 +215,7 @@ const Theme = (props) => {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" className={classes.container}>
-            {props.children}
-            <Box pt={4}>
-              <Copyright />
-            </Box>
-          </Container>
+          {props.children}
         </main>
       </div>
 
@@ -237,6 +223,7 @@ const Theme = (props) => {
         .activeLink {
           color: #318df0;
           background-color: #f0f0f0;
+          font-weight: bolder;
         }
 
         .link-theme {
