@@ -1,7 +1,22 @@
+import React, { Component } from "react";
+import FroalaEditorComponent from "../../components/FroalaEditor";
 import Theme from "../../components/theme";
 
-const Home = (props) => {
-  return <Theme {...props}>Home Page</Theme>;
-};
+export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-export default Home;
+  render() {
+    return (
+      <Theme {...this.props}>
+        <FroalaEditorComponent
+          data={(data) => {
+            console.log(data.html.get());
+          }}
+        ></FroalaEditorComponent>
+      </Theme>
+    );
+  }
+}
