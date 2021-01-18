@@ -1,10 +1,10 @@
 import React from "react";
-import Theme from "../../../components/theme";
+import Dashboard from "../../../components/Dashboard";
 
-const Table = (props) => {
+const TableExample = (props) => {
   return (
     <React.Fragment>
-      <Theme {...props}>
+      <Dashboard {...props}>
         <table>
           <thead>
             <tr>
@@ -47,7 +47,7 @@ const Table = (props) => {
             </tr>
           </tbody>
         </table>
-      </Theme>
+      </Dashboard>
 
       <style jsx>{`
         table {
@@ -112,4 +112,4 @@ const Table = (props) => {
   );
 };
 
-export default Table;
+export default TableExample;

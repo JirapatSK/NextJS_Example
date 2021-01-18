@@ -1,13 +1,13 @@
 import React from "react";
 
-const FroalaEditorComponent = (props) => {
+const Froala = (props) => {
   React.useEffect(() => {
     var editor = new FroalaEditor(
       "#froalaEditorElement",
       {
         events: {
           contentChanged: function () {
-            props.data(editor);
+            props.onChange(editor.html.get());
           },
           "image.beforeUpload": function (images) {
             if (images.length) {
@@ -31,15 +31,16 @@ const FroalaEditorComponent = (props) => {
             this.video.insert(videoTag);
             this.popups.hideAll();
             return false;
-            // return false;
           },
         },
       },
-      function () {}
+      function () {
+        this.html.set(props.value);
+      }
     );
   }, []);
 
-  return <div id="froalaEditorElement"></div>;
+  return <textarea id="froalaEditorElement"></textarea>;
 };
 
-export default FroalaEditorComponent;
+export default Froala;

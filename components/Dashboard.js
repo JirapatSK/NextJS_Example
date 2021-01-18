@@ -108,7 +108,7 @@ const ActiveLink = ({ href, children }) => {
   return <Link href={href}>{React.cloneElement(children, { className })}</Link>;
 };
 
-const Theme = (props) => {
+const Dashboard = (props) => {
   const classes = useStyles();
 
   const handleDrawerOpen = () => {
@@ -127,12 +127,22 @@ const Theme = (props) => {
       icon: "fas fa-home",
     },
     {
-      pathname: "/design/accordion",
+      pathname: "/example/calendar",
+      title: "Calendar Events",
+      icon: "fas fa-calendar-alt",
+    },
+    {
+      pathname: "/example/froala",
+      title: "Froala Editor",
+      icon: "fas fa-edit",
+    },
+    {
+      pathname: "/example/accordion",
       title: "Accordion",
       icon: "fas fa-border-all",
     },
     {
-      pathname: "/design/table",
+      pathname: "/example/table",
       title: "Table",
       icon: "fas fa-table",
     },
@@ -246,4 +256,4 @@ const Theme = (props) => {
   );
 };
 
-export default Theme;
+export default Dashboard;

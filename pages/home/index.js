@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import FroalaEditorComponent from "../../components/FroalaEditor";
-import Theme from "../../components/theme";
+import Dashboard from "../../components/Dashboard";
 
 export default class Home extends Component {
   constructor(props) {
@@ -8,15 +7,9 @@ export default class Home extends Component {
     this.state = {};
   }
 
+  componentDidMount() {}
+
   render() {
-    return (
-      <Theme {...this.props}>
-        <FroalaEditorComponent
-          data={(data) => {
-            console.log(data.html.get());
-          }}
-        ></FroalaEditorComponent>
-      </Theme>
-    );
+    return <Dashboard {...this.props}>{this.props.env["mode"]}</Dashboard>;
   }
 }

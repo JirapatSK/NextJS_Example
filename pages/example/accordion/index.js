@@ -1,7 +1,7 @@
 import React from "react";
-import Theme from "../../../components/theme";
+import Dashboard from "../../../components/Dashboard";
 
-const Accordion = (props) => {
+const AccordionExample = (props) => {
   React.useEffect(() => {
     const labels = document.querySelectorAll(".accordion-design-item__label");
     const tabs = document.querySelectorAll(".accordion-design-tab");
@@ -48,7 +48,7 @@ const Accordion = (props) => {
 
   return (
     <React.Fragment>
-      <Theme {...props}>
+      <Dashboard {...props}>
         <section className="accordion-design">
           <section className="accordion-design-tabs">
             <button
@@ -313,7 +313,7 @@ const Accordion = (props) => {
               }
 
               &__label {
-                margin-bottom: 1.5rem;
+                display: none;
               }
 
               &.accordion-design-active {
@@ -332,9 +332,9 @@ const Accordion = (props) => {
             width: 100%;
           }
         `}</style>
-      </Theme>
+      </Dashboard>
     </React.Fragment>
   );
 };
 
-export default Accordion;
+export default AccordionExample;

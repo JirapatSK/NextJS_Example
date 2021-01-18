@@ -1,6 +1,6 @@
 import React from "react";
 
-const Login = (props) => {
+const LoginExample = (props) => {
   React.useEffect(() => {
     const sign_in_btn = document.querySelector("#sign-in-btn");
     const sign_up_btn = document.querySelector("#sign-up-btn");
@@ -93,11 +93,7 @@ const Login = (props) => {
                 Sign up
               </button>
             </div>
-            <img
-              src={`${process.env.base_path}/log.svg`}
-              className="image"
-              alt=""
-            />
+            <img src={`/log.svg`} className="image" alt="" />
           </div>
           <div className="panel right-panel">
             <div className="content">
@@ -110,11 +106,7 @@ const Login = (props) => {
                 Sign in
               </button>
             </div>
-            <img
-              src={`${process.env.base_path}/register.svg`}
-              className="image"
-              alt=""
-            />
+            <img src={`/register.svg`} className="image" alt="" />
           </div>
         </div>
       </div>
@@ -512,4 +504,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default LoginExample;

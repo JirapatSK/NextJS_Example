@@ -3,22 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env MODE=dev next dev",
+    "start": "cross-env MODE=dev next dev",
     "build": "cross-env MODE=prod next build && next export",
-    "start": "next start"
+    "serve": "next start"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "moment": "^2.29.1",
     "next": "10.0.1",
     "next-router-events": "^2.1.0",
     "react": "17.0.1",
+    "react-big-calendar": "^0.30.0",
     "react-dom": "17.0.1",
     "react-hook-form": "^6.11.3",
     "sass": "^1.30.0",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-sass": "^1.0.1",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "node-sass": "^5.0.0",

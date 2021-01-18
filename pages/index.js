@@ -1,4 +1,3 @@
-import Theme from "../components/theme";
 import React from "react";
 import { useRouter } from "next/router";
 

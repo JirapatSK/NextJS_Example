@@ -1,14 +1,16 @@
-require("dotenv").config({ path: `./environments/.env.${process.env.MODE}` });
 const path = require("path");
+const withSass = require("@zeit/next-sass");
+const withCSS = require("@zeit/next-css");
 
-module.exports = {
-  basePath: process.env.BASE_PATH,
-  sassOptions: {
-    includePaths: [path.join(__dirname, "styles")],
-  },
-  trailingSlash: true,
-  env: {
-    mode: process.env.APP_MODE,
-    base_path: process.env.BASE_PATH,
-  },
-};
+module.exports = withCSS(
+  withSass({
+    basePath: process.env.BASE_PATH,
+    sassOptions: {
+      includePaths: [path.join(__dirname, "styles")],
+    },
+    trailingSlash: true,
+    env: {
+      mode: process.env.MODE,
+    },
+  })
+);
