@@ -1,10 +1,11 @@
 const path = require("path");
 const withSass = require("@zeit/next-sass");
 const withCSS = require("@zeit/next-css");
+const env = require(`./environments/${process.env.MODE}`);
 
 module.exports = withCSS(
   withSass({
-    basePath: process.env.BASE_PATH,
+    basePath: env.basePath,
     sassOptions: {
       includePaths: [path.join(__dirname, "styles")],
     },

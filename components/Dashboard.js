@@ -123,7 +123,7 @@ const Dashboard = (props) => {
   const menuList = [
     {
       pathname: "/home",
-      title: "หน้าหลัก",
+      title: "Home",
       icon: "fas fa-home",
     },
     {

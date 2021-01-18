@@ -2,6 +2,8 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/core/styles";
 import React from "react";
 
+const env = require(`../environments/${process.env.mode}`);
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheets = new ServerStyleSheets();
@@ -28,20 +30,23 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="stylesheet" href={`/vendors/bootstrap.min.css`} />
           <link
             rel="stylesheet"
-            href={`/vendors/froala_editor/css/froala_editor.min.css`}
+            href={`${env.basePath}/vendors/bootstrap.min.css`}
           />
           <link
             rel="stylesheet"
-            href={`/vendors/froala_editor/css/froala_editor.pkgd.min.css`}
+            href={`${env.basePath}/vendors/froala_editor/css/froala_editor.min.css`}
           />
           <link
             rel="stylesheet"
-            href={`/vendors/froala_editor/css/plugins.pkgd.min.css`}
+            href={`${env.basePath}/vendors/froala_editor/css/froala_editor.pkgd.min.css`}
           />
-          <link rel="stylesheet" href={`/vendors/all.css`} />
+          <link
+            rel="stylesheet"
+            href={`${env.basePath}/vendors/froala_editor/css/plugins.pkgd.min.css`}
+          />
+          <link rel="stylesheet" href={`${env.basePath}/vendors/all.css`} />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap"
@@ -50,10 +55,14 @@ export default class MyDocument extends Document {
         </Head>
         <body>
           <Main />
-          <script src={`/vendors/jquery-3.5.1.min.js`} />
-          <script src={`/vendors/bootstrap.bundle.min.js`} />
-          <script src={`/vendors/froala_editor/js/froala_editor.pkgd.min.js`} />
-          <script src={`/vendors/froala_editor/js/plugins.pkgd.min.js`} />
+          <script src={`${env.basePath}/vendors/jquery-3.5.1.min.js`} />
+          <script src={`${env.basePath}/vendors/bootstrap.bundle.min.js`} />
+          <script
+            src={`${env.basePath}/vendors/froala_editor/js/froala_editor.pkgd.min.js`}
+          />
+          <script
+            src={`${env.basePath}/vendors/froala_editor/js/plugins.pkgd.min.js`}
+          />
           <NextScript />
         </body>
       </Html>

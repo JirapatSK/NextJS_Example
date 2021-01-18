@@ -1,3 +1,4 @@
-export default {
+module.exports = {
+  basePath: "",
   mode: "Development",
 };
