@@ -4,19 +4,23 @@
   "private": true,
   "scripts": {
     "start": "cross-env MODE=dev next dev",
-    "build": "cross-env MODE=prod next build && next export",
+    "build": "cross-env MODE=prod next build && cross-env MODE=prod next export",
     "serve": "next start"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "moment": "^2.29.1",
-    "next": "10.0.1",
+    "next": "^10.0.1",
+    "next-plugin-preact": "^3.0.3",
     "next-router-events": "^2.1.0",
-    "react": "17.0.1",
+    "preact": "^10.5.10",
+    "preact-render-to-string": "^5.1.12",
+    "react": "npm:@preact/compat@0.0.4",
     "react-big-calendar": "^0.30.0",
-    "react-dom": "17.0.1",
+    "react-dom": "npm:@preact/compat@0.0.4",
     "react-hook-form": "^6.14.2",
+    "react-ssr-prepass": "npm:preact-ssr-prepass@^1.1.3",
     "sass": "^1.32.4",
     "styled-components": "^5.2.1"
   },
