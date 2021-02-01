@@ -146,6 +146,11 @@ const Dashboard = (props) => {
       title: "Table",
       icon: "fas fa-table",
     },
+    {
+      pathname: "/login",
+      title: "Login",
+      icon: "fas fa-sign-in-alt",
+    },
   ];
 
   return (

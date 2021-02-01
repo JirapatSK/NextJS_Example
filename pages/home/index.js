@@ -1,15 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
+import { useRecoilState } from "recoil";
 import Dashboard from "../../components/Dashboard";
+import { exRecoil } from "../../components/RecoilState";
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const Home = (props) => {
+  const [ex, setEx] = useRecoilState(exRecoil);
 
-  componentDidMount() {}
+  React.useEffect(() => {
+    setEx("new recoil value");
+  }, []);
 
-  render() {
-    return <Dashboard {...this.props}>{this.props.env["mode"]}</Dashboard>;
-  }
-}
+  return <Dashboard {...props}>{ex}</Dashboard>;
+};
+
+export default Home;

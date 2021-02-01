@@ -1,13 +1,15 @@
 import React from "react";
 
 const Froala = (props) => {
+  var editor;
+
   React.useEffect(() => {
-    var editor = new FroalaEditor(
-      "#froalaEditorElement",
+    editor = new FroalaEditor(
+      `#${props.id}`,
       {
         events: {
           contentChanged: function () {
-            props.onChange(editor.html.get());
+            props.onChange(this.html.get());
           },
           "image.beforeUpload": function (images) {
             if (images.length) {
@@ -40,7 +42,14 @@ const Froala = (props) => {
     );
   }, []);
 
-  return <textarea id="froalaEditorElement"></textarea>;
+  React.useEffect(
+    () => () => {
+      editor && editor.destroy();
+    },
+    []
+  );
+
+  return <textarea id={`${props.id}`}></textarea>;
 };
 
 export default Froala;

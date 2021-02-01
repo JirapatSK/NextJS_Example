@@ -16,6 +16,7 @@ export default class FroalaExample extends Component {
             console.log(data);
           }}
           value={"<p>FROALA WYSIWYG EDITOR</p>"}
+          id="froaloExample"
         ></Froala>
       </Dashboard>
     );

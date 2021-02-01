@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import useLocalStorage from "../components/useLocalStorage";
 import { createMuiTheme } from "@material-ui/core/styles";
 import red from "@material-ui/core/colors/red";
+import { RecoilRoot } from "recoil";
 
 const env = require(`../environments/${process.env.mode}`);
 const ThemeConfig = createMuiTheme({
@@ -30,6 +31,7 @@ function MyApp({ Component, pageProps }) {
   const [state, patchState] = useState(initialState);
 
   useEffect(() => {
+    console.log("Environments", env);
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
@@ -37,20 +39,22 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <ThemeProvider theme={ThemeConfig}>
-      <Component
-        {...pageProps}
-        {...state}
-        patchState={(e) => {
-          patchState({ ...state, ...e });
-        }}
-        userLogin={{ ...userLogin }}
-        patchUserLogin={(e) => {
-          patchUserLogin(e);
-        }}
-        env={env}
-      />
-    </ThemeProvider>
+    <RecoilRoot>
+      <ThemeProvider theme={ThemeConfig}>
+        <Component
+          {...pageProps}
+          {...state}
+          patchState={(e) => {
+            patchState({ ...state, ...e });
+          }}
+          userLogin={{ ...userLogin }}
+          patchUserLogin={(e) => {
+            patchUserLogin(e);
+          }}
+          env={env}
+        />
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }
 
